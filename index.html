@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a0c10">
+<title>Anant’s Grind</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;600;700&display=swap">
+<style>
+:root{--bg:#0a0c10;--card:#12161c;--card2:#171c24;--line:#232b36;--ink:#e8ecf2;--mute:#7f8a99;--acc:#4cc9f0;--ok:#3ddc97;--warn:#ffb703;--bad:#ff4d5a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0}
+body{font-family:Inter,system-ui,sans-serif;color:var(--ink);background:var(--bg);background-image:radial-gradient(900px 420px at 50% -140px,#16283a,transparent 70%);background-attachment:fixed;min-height:100vh}
+main{max-width:560px;margin:0 auto;padding:14px 14px 40px}
+h1{font:700 32px 'Barlow Condensed',Impact,sans-serif;text-transform:uppercase;letter-spacing:.07em;margin:6px 0 2px}
+h2{font:600 18px 'Barlow Condensed',Impact,sans-serif;text-transform:uppercase;letter-spacing:.09em;color:var(--acc);margin:0 0 12px}
+.sub{color:var(--mute);font-size:14px;margin:0 0 12px}
+.stats{display:flex;gap:8px;margin-bottom:12px}
+.chip{flex:1;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 6px;text-align:center}
+.chip b{display:block;font:700 24px 'Barlow Condensed',sans-serif;letter-spacing:.03em}.chip small{color:var(--mute);font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+.tabs{display:flex;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:4px;margin-bottom:14px;gap:2px}
+.tabs button{flex:1;border:0;background:none;padding:9px 2px;border-radius:9px;font:600 13px Inter,sans-serif;text-transform:uppercase;letter-spacing:.05em;color:var(--mute);cursor:pointer}
+.tabs .a{background:var(--acc);color:#041a22}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.nav button,.seg button{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:8px 14px;font:700 15px Inter,sans-serif;color:var(--ink);cursor:pointer}
+.nav b{font:600 19px 'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.07em;text-align:center}
+.seg{display:flex;gap:6px;margin-bottom:12px}.seg button{flex:1}.seg .a{background:var(--acc);color:#041a22;border-color:var(--acc)}
+.ring{position:relative;width:150px;height:150px;margin:0 auto}
+.ring svg{transform:rotate(-90deg)}
+.ring div{position:absolute;inset:0;display:grid;place-content:center;text-align:center;font:700 40px 'Barlow Condensed',sans-serif;letter-spacing:.02em}
+.ring small{font:600 11px Inter,sans-serif;color:var(--mute);text-transform:uppercase;letter-spacing:.06em}
+.msg{text-align:center;margin:12px 0 0;font-weight:600}
+.hb{display:flex;align-items:center;gap:12px;width:100%;border:1px solid var(--line);border-left:4px solid var(--d);border-radius:12px;padding:12px 14px;margin-bottom:10px;background:var(--card);font:inherit;color:inherit;text-align:left;cursor:pointer;transition:transform .12s,background .2s}
+.hb:active{transform:scale(.98)}
+.hb.on{background:color-mix(in srgb,var(--d) 15%,var(--card));border-color:var(--d)}
+.hb .em{font-size:26px}.hb b{display:block;font-size:16px;font-weight:600}.hb small{color:var(--mute)}.hb>span:nth-child(2){flex:1}
+.ck{width:30px;height:30px;border-radius:8px;border:2px solid var(--line);display:grid;place-items:center;font-weight:800;flex:none}
+.hb.on .ck{background:var(--d);border-color:var(--d);color:#05080c}
+.hb.hit{animation:slam .45s cubic-bezier(.2,.9,.3,1)}
+@keyframes slam{0%{transform:scale(1.035);box-shadow:0 0 22px var(--d)}35%{transform:scale(.965)}100%{transform:scale(1);box-shadow:0 0 0 transparent}}
+.bar{height:10px;background:#1d242e;border-radius:3px;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,#4895ef,var(--acc));transition:width .5s}
+.big{width:100%;border:0;border-radius:10px;padding:12px;margin-top:10px;background:var(--acc);font:700 14px Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;color:#041a22;cursor:pointer}
+.big.alt{background:#232b36;color:var(--ink)}
+.pie{width:150px;height:150px;border-radius:50%;margin:0 auto 14px;display:grid;place-content:center}
+.pie span{background:var(--card);width:92px;height:92px;border-radius:50%;display:grid;place-content:center;font:700 28px 'Barlow Condensed',sans-serif}
+.lg{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:13px;justify-content:center}
+.lg i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px}
+.bars{display:flex;align-items:flex-end;gap:8px;height:150px}
+.bars div{flex:1;text-align:center;font-size:12px;color:var(--mute);display:flex;flex-direction:column;justify-content:flex-end}
+.bars i{display:block;flex:none;border-radius:4px 4px 2px 2px;margin:2px 0}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin:12px 0}
+.cal button{aspect-ratio:1;border:0;border-radius:8px;font:600 12px Inter,sans-serif;color:var(--ink);cursor:pointer}
+.cal small{text-align:center;color:var(--mute)}
+.aw{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.at{border:1px solid var(--line);border-radius:12px;padding:14px 10px;text-align:center;background:color-mix(in srgb,var(--c,#4cc9f0) 14%,var(--card2));border-color:color-mix(in srgb,var(--c,#4cc9f0) 45%,var(--line))}
+.at.lk{opacity:.4;filter:grayscale(.8)}.at span{font-size:30px;display:block}.at b{display:block;font-size:14px}.at small{color:var(--mute)}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.hbtn{display:flex;gap:8px}
+.qm{flex:none;border:1px solid var(--line);width:38px;height:38px;border-radius:10px;background:var(--card);font:800 17px Inter,sans-serif;color:var(--ink);cursor:pointer}
+.pp{flex:none;border:1px solid var(--line);border-radius:8px;padding:6px 8px;background:#1d242e;font:700 11px Inter,sans-serif;color:var(--ink);cursor:pointer}
+.hp{margin-bottom:12px}.hp b{display:block;margin-bottom:2px;color:var(--acc)}.hp p{margin:0;line-height:1.5;color:#c3cad6}
+.dz{border:2px dashed #7a2a32;border-radius:12px;padding:12px}
+.dz input,.cd input,.tw input,.ad input{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);font:600 15px Inter,sans-serif;margin:8px 0;background:#0d1117;color:var(--ink)}
+.dz button:disabled{opacity:.4;cursor:not-allowed}
+.cal button.cl{display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.2}.cal button.cl small{font-size:10px;color:var(--ink)}.cal button:disabled{opacity:.3;cursor:default}
+.tw{border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:10px;background:var(--card2)}
+.tw .r1{display:flex;gap:8px;align-items:center}.tw .r1 input{margin:0}.tw .r1 .e1{width:54px;text-align:center;flex:none}
+.tw .r2{display:flex;gap:8px;align-items:center;justify-content:space-between;margin-top:8px;color:var(--mute);font-size:13px}
+.tw .r2 div{display:flex;gap:6px;align-items:center}
+.tw button,.ad .row button{border:1px solid var(--line);background:#1d242e;color:var(--ink);border-radius:8px;min-width:34px;height:34px;font:700 15px Inter,sans-serif;cursor:pointer}
+.tw button:disabled{opacity:.3}.tw .rm{background:#2a1216;border-color:#6b2730;color:#ff8a93}
+.ad .row{display:flex;gap:8px}.ad .row input{margin:8px 0}.ad .e1{width:64px;flex:none;text-align:center}.ad .q1{width:80px;flex:none}
+#t{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,120px);background:#1b2330;border:1px solid var(--acc);color:var(--ink);padding:11px 20px;border-radius:10px;font-weight:700;transition:transform .3s;z-index:10;text-align:center;max-width:90vw}
+#t.s{transform:translate(-50%,0)}
+.stamp{position:fixed;inset:0;display:grid;place-content:center;pointer-events:none;z-index:20}
+.stamp b{font:700 54px 'Barlow Condensed',Impact,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--ok);border:5px solid var(--ok);padding:6px 24px;border-radius:8px;background:#0a0c10e6;transform:rotate(-8deg);animation:stamp 1.5s ease-out forwards}
+@keyframes stamp{0%{transform:rotate(-8deg) scale(2.6);opacity:0}16%{transform:rotate(-8deg) scale(1);opacity:1}22%{transform:rotate(-8deg) scale(1.08)}28%{transform:rotate(-8deg) scale(1)}80%{opacity:1}100%{transform:rotate(-8deg) scale(1);opacity:0}}
+@media(prefers-reduced-motion:reduce){.hb,.bar i{transition:none}.hb.hit,.stamp b{animation:none}}
+</style></head><body>
+<main id="app"></main><div id="t"></div>
+<script>
+const NAME='Anant';
+// Paste your Firebase Realtime Database URL between the quotes. Leave empty to save only on this device.
+const DB='';
+const K='anant-grind-v1';
+const PAL=['#4cc9f0','#4895ef','#7b6cf6','#b5179e','#f72585','#ff7a00','#ffb703','#2ec4b6','#57cc99','#e63946','#90be6d','#a0a8b8'];
+const DEFT=[['Study','📚',0],['Workout','🏋️',0],['Library visit','📖',0],['Internship applications','💼',3],['Newspaper reading','📰',0],['No smoking','🚭',1],['Proper diet','🥗',3],['Less outside food','🥡',0],['No sun exposure','🕶️',3],['Moisturize','🧴',0]];
+const mk=()=>DEFT.map((x,i)=>({id:'t'+(i+1),n:x[0],e:x[1],q:x[2],c:i,a:'',x:''}));
+const COL={ok:'#2f9e6b',mid:'#b58a1b',red:'#a83240',now:'#2a3340',none:'#161b22'};
+const A=document.getElementById('app'),$=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+let S=null,CODE='',online=false,hit=null;
+try{S=JSON.parse(localStorage.getItem(K));CODE=localStorage.getItem('ag-code')||''}catch(e){}
+S=S||{};S.d=S.d||{};S.p=S.p||{};S.t=S.t||mk();S.tm=S.tm||0;
+const TL=v=>Array.isArray(v)?v.filter(Boolean):Object.values(v||{});
+const url=p=>DB.replace(/\/$/,'')+'/tracks/'+encodeURIComponent(CODE)+(p?'/'+p:'')+'.json';
+function push(p,v){if(!DB||!CODE)return;fetch(url(p),{method:'PUT',body:JSON.stringify(v)}).then(r=>{online=r.ok;dot()}).catch(()=>{online=false;dot()})}
+function dot(){const e=$('sy');if(e)e.textContent=!DB?'Saved on this device.':online?'🟢 Synced':'⚪ Offline, will sync later'}
+async function pull(){if(!DB||!CODE)return;try{const r=(await(await fetch(url(''))).json())||{};
+ if((r.r||0)>(S.r||0))S={d:{},p:{},t:S.t,tm:S.tm,s:r.s||key(today()),r:r.r};
+ if(r.t&&(r.tm||0)>S.tm){S.t=TL(r.t);S.tm=r.tm}else if(S.tm>(r.tm||0)){push('t',S.t);push('tm',S.tm)}
+ for(const k in S.d)if(!(r.d&&k in r.d))push('d/'+k,S.d[k]);
+ for(const k in S.p)if(!(r.p&&k in r.p))push('p/'+k,S.p[k]);
+ S.d={...S.d,...(r.d||{})};S.p={...S.p,...(r.p||{})};
+ if(r.s&&r.s<S.s)S.s=r.s;else if(!r.s||S.s<r.s)push('s',S.s);
+ online=true;save();if(tab<4)render();dot()}catch(e){online=false;dot()}}
+function setCode(){const v=$('cc').value.trim();if(v.length<6){toast('Use at least 6 characters');return}CODE=v;try{localStorage.setItem('ag-code',v)}catch(e){}render();pull()}
+function chCode(){try{localStorage.removeItem('ag-code')}catch(e){}CODE='';render()}
+function doReset(){if(!confirm('This deletes ALL progress on every device. Your task list stays. Really reset?'))return;const r=Date.now();S={d:{},p:{},t:S.t,tm:S.tm,s:key(today()),r};save();if(DB&&CODE)fetch(url(''),{method:'DELETE'}).then(()=>{push('s',S.s);push('r',r);push('t',S.t);push('tm',S.tm)}).catch(()=>{});sel=today();tab=0;render();toast('Clean slate. Get to work.')}
+const save=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}};
+const pad=n=>String(n).padStart(2,'0');
+const key=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+const parse=k=>{const[a,b,c]=k.split('-');return new Date(+a,b-1,+c)};
+const add=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x};
+const today=()=>{const t=new Date();t.setHours(0,0,0,0);return t};
+if(!S.s){S.s=key(today());save()}
+let tab=0,R='w',sel=today(),cm=new Date(sel.getFullYear(),sel.getMonth(),1);
+const mon=d=>add(d,-((d.getDay()+6)%7));
+const wk=d=>[...Array(7)].map((_,i)=>add(mon(d),i));
+// tasks active on a given day: added on or before it, and not removed yet
+const act=k=>S.t.filter(t=>(!t.a||t.a<=k)&&(!t.x||k<t.x));
+const rw=k=>S.d[k]||{},ps=k=>S.p[k]||{};
+const gt=(k,id)=>!!(rw(k)[id]||ps(k)[id]);
+const cnt=k=>act(k).filter(t=>gt(k,t.id)).length;
+const tot=k=>act(k).length;
+const pc=k=>{const n=tot(k);return n?Math.round(cnt(k)/n*100):0};
+const used=(d,id)=>wk(d).filter(x=>ps(key(x))[id]).length;
+const left=(d,t)=>Math.max(0,t.q-used(d,t.id));
+const colr=id=>{const t=S.t.find(x=>x.id==id);return PAL[((t&&t.c)||0)%PAL.length]};
+const st=k=>{const d=parse(k),n=cnt(k),T=tot(k);if(d<parse(S.s)||d>today()||!T)return'none';if(n==T)return'ok';if(k==key(today()))return'now';return n/T>=.6?'mid':'red'};
+const ov=to=>{let n=0,t=0;for(let d=parse(S.s);d<=to;d=add(d,1)){const k=key(d);n+=cnt(k);t+=tot(k)}return t?Math.round(n/t*100):100};
+const stk=()=>{let b=0,c=0,t=key(today());for(let d=parse(S.s);d<=today();d=add(d,1)){const k=key(d),T=tot(k);if(!T)continue;if(cnt(k)==T){c++;b=Math.max(b,c)}else if(k!=t)c=0}return[c,b]};
+const fmt=(d,l)=>d.toLocaleDateString('en-IN',{weekday:l?'long':'short',day:'numeric',month:'short'});
+const MN=d=>d.toLocaleDateString('en-IN',{month:'short'});
+const MSG=p=>p==0?'Zero on the board. Start moving.':p<40?'In motion. Keep stacking.':p<70?'Past the halfway line. No easing off.':p<100?'Almost there. Finish what you started.':'Day locked. Discipline beats mood.';
+let tt;function toast(m){if(!m)return;const e=$('t');e.textContent=m;e.className='s';clearTimeout(tt);tt=setTimeout(()=>e.className='',2600)}
+function buzz(p){try{navigator.vibrate&&navigator.vibrate(p)}catch(e){}}
+function stamp(m){const e=document.createElement('div');e.className='stamp';e.innerHTML='<b>'+m+'</b>';document.body.appendChild(e);setTimeout(()=>e.remove(),1600)}
+function fin(k,n0,T0){if(T0&&n0<T0&&cnt(k)==T0){buzz([30,40,70]);stamp('Day locked');return true}return false}
+function tg(id){const k=key(sel),g={...rw(k)},pp={...ps(k)},n0=cnt(k),T0=tot(k),t=S.t.find(x=>x.id==id);
+ if(pp[id]){pp[id]=0;g[id]=1;S.p[k]=pp;push('p/'+k,pp)}else g[id]=g[id]?0:1;
+ S.d[k]=g;if(k<S.s){S.s=k;push('s',k)}push('d/'+k,g);save();
+ let m='';if(g[id]){hit=id;buzz(25);m=fin(k,n0,T0)?'All '+T0+' down. Day locked.':t.e+' '+t.n+' · done.'}
+ toast(m);render()}
+function ppp(id,ev){ev.stopPropagation();const k=key(sel),pp={...ps(k)},n0=cnt(k),T0=tot(k),t=S.t.find(x=>x.id==id);
+ if(pp[id])pp[id]=0;else{if(rw(k)[id]){toast('Already done, no pass needed');return}if(left(sel,t)<=0){toast('No passes left this week for '+t.n);return}pp[id]=1;hit=id;buzz(20);toast('🎟 Pass used · '+t.n+' counts.')}
+ S.p[k]=pp;if(k<S.s){S.s=k;push('s',k)}push('p/'+k,pp);save();fin(k,n0,T0);render()}
+function go(n){let d;if(tab==1&&R=='w')d=add(sel,7*n);else if(tab==1&&R=='m')d=new Date(sel.getFullYear(),sel.getMonth()+n,1);else d=add(sel,n);
+ if(d>today())d=today();sel=d;render()}
+function rng(){if(R=='d')return[sel];if(R=='w')return wk(sel);const a=[];for(let d=new Date(sel.getFullYear(),sel.getMonth(),1);d.getMonth()==sel.getMonth();d=add(d,1))a.push(d);return a}
+function vT(){const k=key(sel),n=cnt(k),T=tot(k),p=pc(k),isT=k==key(today()),C=2*Math.PI*52,c=p==100?'#3ddc97':p>=60?'#ffb703':'#ff4d5a',red=st(k)=='red';
+ const m=!T?'No tasks active on this day.':p==0&&!isT?'Nothing logged for this day':MSG(p);
+ return `<div class="nav"><button onclick="go(-1)">‹</button><b>${fmt(sel,1)}${isT?' · Today':''}</b><button onclick="go(1)">›</button></div>
+<div class="card"${red?' style="background:#25121a;border-color:#5a2430"':''}><div class="ring"><svg width="150" height="150"><circle cx="75" cy="75" r="52" fill="none" stroke="#222831" stroke-width="14"/><circle cx="75" cy="75" r="52" fill="none" stroke="${c}" stroke-width="14" stroke-linecap="round" stroke-dasharray="${p/100*C} ${C}" style="transition:stroke-dasharray .6s"/></svg><div>${p}%<small>${n} of ${T} done</small></div></div>
+<p class="msg">${red?'Red day. Own it. Fix it tomorrow.':m}</p></div>
+${T?act(k).map(t=>{const on=gt(k,t.id),P=!!ps(k)[t.id],L=left(sel,t);return `<div class="hb${on?' on':''}${hit==t.id?' hit':''}" role="button" tabindex="0" style="--d:${colr(t.id)}" onclick="tg('${t.id}')"><span class="em">${esc(t.e)}</span><span><b>${esc(t.n)}</b><small>${P?'🎟 pass used':on?'Done':'Pending'}</small></span>${t.q>0?`<button class="pp" aria-label="Puff Puff Pass" onclick="ppp('${t.id}',event)">🎟 ${P?'Undo':L+' left'}</button>`:''}<span class="ck">${on?(P?'🎟':'✓'):''}</span></div>`}).join(''):'<div class="card"><p class="msg" style="margin:0">No tasks yet. Hit ⚙ at the top and add some.</p></div>'}`}
+function line(ds){const W=300,Hh=110,x=i=>10+i*(W-20)/Math.max(ds.length-1,1),y=p=>Hh-12-p/100*(Hh-24);let pts=[],dots='';
+ ds.forEach((d,i)=>{const k=key(d);if(st(k)=='none')return;const p=pc(k);pts.push(x(i)+','+y(p));dots+=`<circle cx="${x(i)}" cy="${y(p)}" r="4" fill="${st(k)=='ok'?'#3ddc97':st(k)=='mid'?'#ffb703':st(k)=='red'?'#ff4d5a':'#4cc9f0'}" stroke="#0a0c10" stroke-width="1"/>`});
+ return `<svg viewBox="0 0 ${W} ${Hh}" style="width:100%"><line x1="10" x2="290" y1="${y(100)}" y2="${y(100)}" stroke="#232b36" stroke-dasharray="3"/><line x1="10" x2="290" y1="${y(0)}" y2="${y(0)}" stroke="#232b36"/><polyline points="${pts.join(' ')}" fill="none" stroke="#4cc9f0" stroke-width="2"/>${dots}</svg>`}
+function wstat(d){const t=today(),s=parse(S.s),ds=wk(d).filter(x=>x>=s&&x<=t),m={};let n=0,c=0;
+ ds.forEach(x=>{const k=key(x);n+=tot(k);c+=cnt(k);act(k).forEach(a=>{m[a.id]=m[a.id]||{c:0,n:0};m[a.id].n++;if(gt(k,a.id))m[a.id].c++})});
+ return{n,c,m,p:n?Math.round(c/n*100):0}}
+function cmpW(){const a=wstat(sel),b=wstat(add(mon(sel),-7));
+ if(!b.n)return '<div class="card"><h2>This week vs last week</h2><p class="msg" style="margin:0">No data for last week yet. Next week there is a number to beat.</p></div>';
+ const df=a.p-b.p,ar=x=>x>0?'▲':x<0?'▼':'•',cl=x=>x<0?'#ff6b76':'#3ddc97';
+ const rows=S.t.filter(t=>a.m[t.id]).map(t=>{const x=a.m[t.id],y=b.m[t.id],pa=Math.round(x.c/x.n*100);if(!y)return `<p class="sub" style="margin:4px 0">${esc(t.e)} ${esc(t.n)}: ${pa}% · new this week</p>`;const pb=Math.round(y.c/y.n*100),d=pa-pb;return `<p class="sub" style="margin:4px 0">${esc(t.e)} ${esc(t.n)}: ${pa}% vs ${pb}% <span style="color:${cl(d)}">${ar(d)}</span></p>`}).join('');
+ return `<div class="card"><h2>This week vs last week</h2><div class="stats"><div class="chip"><b>${a.p}%</b><small>This week</small></div><div class="chip"><b>${b.p}%</b><small>Last week</small></div><div class="chip"><b style="color:${cl(df)}">${ar(df)} ${Math.abs(df)}%</b><small>Change</small></div></div>${rows}<p class="msg">${df>0?'Ahead of last week. Keep pushing.':df<0?'Slipped from last week. Take it back.':'Level with last week. Raise the bar.'}</p></div>`}
+function vP(){const ds=rng(),s=parse(S.s),t=today(),tr=ds.filter(d=>d>=s&&d<=t);
+ const L=S.t.map(x=>{const dd=tr.filter(d=>act(key(d)).some(q=>q.id==x.id));return{...x,na:dd.length,c:dd.filter(d=>gt(key(d),x.id)).length}}).filter(x=>x.na>0);
+ const TT=L.reduce((a,b)=>a+b.na,0),dn=L.reduce((a,b)=>a+b.c,0),p=TT?Math.round(dn/TT*100):0;
+ let ac=0,gr=[];L.forEach(x=>{const w=TT?x.c/TT*100:0;gr.push(`${colr(x.id)} ${ac}% ${ac+w}%`);ac+=w});gr.push(`#262d38 ${ac}% 100%`);
+ const lab=R=='d'?fmt(sel,1):R=='w'?`${ds[0].getDate()} ${MN(ds[0])} – ${ds[6].getDate()} ${MN(ds[6])}`:sel.toLocaleDateString('en-IN',{month:'long',year:'numeric'});
+ let g2='';
+ if(R=='d'){const k=key(sel),e=act(k).filter(q=>gt(k,q.id)).map(q=>esc(q.e)+' '+esc(q.n));g2=`<div class="card"><h2>Badges earned</h2><p class="msg" style="margin:0">${e.length?e.join('<br>'):'None yet for this day'}</p></div>`}
+ else if(R=='w')g2=cmpW()+`<div class="card"><h2>Daily score</h2><div class="bars">${ds.map(d=>{const k=key(d),x=st(k),n=pc(k);return `<div><small>${x=='none'?'':n+'%'}</small><i style="height:${x=='none'?4:Math.max(n,4)}px;background:${COL[x]}"></i>${d.toLocaleDateString('en-IN',{weekday:'narrow'})}</div>`}).join('')}</div></div>`;
+ else g2=`<div class="card"><h2>Progress line</h2>${line(ds)}<div class="cal">${[...'MTWTFSS'].map(c=>`<small>${c}</small>`).join('')}${Array((ds[0].getDay()+6)%7).fill('<span></span>').join('')}${ds.map(d=>`<button style="background:${COL[st(key(d))]}" onclick="sel=parse('${key(d)}');tab=0;render()">${d.getDate()}</button>`).join('')}</div><div class="lg">${[['ok','Perfect'],['mid','60% or more'],['red','Red day']].map(([c,l])=>`<span><i style="background:${COL[c]}"></i>${l}</span>`).join('')}</div></div>`;
+ return `<div class="seg">${[['d','Day'],['w','Week'],['m','Month']].map(([r,l])=>`<button class="${R==r?'a':''}" onclick="R='${r}';render()">${l}</button>`).join('')}</div>
+<div class="nav"><button onclick="go(-1)">‹</button><b>${lab}</b><button onclick="go(1)">›</button></div>
+<div class="card"><h2>What you did</h2>${TT?`<div class="pie" style="background:conic-gradient(${gr.join(',')})"><span>${p}%</span></div>`:'<p class="msg">No tracked days here yet.</p>'}<div class="lg">${L.map(x=>`<span><i style="background:${colr(x.id)}"></i>${esc(x.n)} ${x.c}/${x.na}</span>`).join('')}${TT?`<span><i style="background:#262d38"></i>Missed ${TT-dn}</span>`:''}</div></div>${g2}`}
+function vA(){const s=parse(S.s),t=today(),T={},W={},w=wk(t).map(key),b=stk()[1],L=act(key(t));
+ for(let d=s;d<=t;d=add(d,1)){const k=key(d);act(k).forEach(a=>{if(gt(k,a.id)){T[a.id]=(T[a.id]||0)+1;if(w.includes(k))W[a.id]=(W[a.id]||0)+1}})}
+ const tile=a=>`<div class="at ${T[a.id]?'':'lk'}" style="--c:${colr(a.id)}"><span>${esc(a.e)}</span><b>${esc(a.n)}</b><small>${T[a.id]||0} all time · ${W[a.id]||0} this week</small></div>`;
+ return `<div class="card"><h2>Task badges</h2>${L.length?`<div class="aw">${L.map(tile).join('')}</div>`:'<p class="msg" style="margin:0">No tasks yet.</p>'}</div>
+<div class="card"><h2>Streak badges</h2><div class="aw">${[[3,'Locked In','🔩'],[7,'Iron Week','⚔️'],[14,'Forged','🛡️'],[30,'Unbreakable','👑']].map(([n,nm,e])=>`<div class="at ${b>=n?'':'lk'}"><span>${e}</span><b>${nm}</b><small>${n} perfect days in a row</small></div>`).join('')}</div><p class="sub" style="text-align:center;margin:12px 0 0">Best streak: ${b} days</p></div>`}
+function cmv(n){const d=new Date(cm.getFullYear(),cm.getMonth()+n,1);if(d>today())return;cm=d;render()}
+function vC(){const ds=[],t=today();for(let d=new Date(cm);d.getMonth()==cm.getMonth();d=add(d,1))ds.push(d);
+ return `<div class="nav"><button onclick="cmv(-1)">‹</button><b>${cm.toLocaleDateString('en-IN',{month:'long',year:'numeric'})}</b><button onclick="cmv(1)">›</button></div><div class="card"><div class="cal">${[...'MTWTFSS'].map(c=>`<small>${c}</small>`).join('')}${Array((ds[0].getDay()+6)%7).fill('<span></span>').join('')}${ds.map(d=>{const k=key(d),x=st(k);return `<button class="cl" ${d>t?'disabled':''} style="background:${COL[x]};${key(sel)==k?'outline:2px solid #4cc9f0':''}" onclick="sel=parse('${k}');cm=new Date(sel.getFullYear(),sel.getMonth(),1);tab=0;render()">${d.getDate()}<small>${x=='none'?'':pc(k)+'%'}</small></button>`}).join('')}</div><p class="sub" style="margin:0;text-align:center">Tap any day to open it and edit it.</p></div>`}
+function vH(){const T=[
+['Tick it','Tap a task the moment it is done. Tapped by mistake? Tap again. Every completed task slams down with a short buzz on phones that support it.'],
+['Read the ring','The ring on top is your day at a glance. It fills as you tick. Fill it completely and the day gets stamped LOCKED.'],
+['Move between days','The ‹ › arrows around the date take you one day back or forward. You can fix the past. You cannot touch tomorrow.'],
+['Badges','Every task earns its own badge. Locked ones stay greyed out until you earn them. Streak badges come from perfect days in a row: 3, 7, 14 and 30.'],
+['Puff Puff Pass','Some tasks carry weekly passes. The 🎟 button on the card shows how many are left. Tap it and the task counts as done for that day, including score, badges and streak. Tap Undo to take it back. Ticking the task yourself later also returns the pass. Passes refill every Monday. Tasks with no 🎟 button have no passes. No excuses there.'],
+['Colours','Every task done turns the day green. 60% or more turns it yellow. Below that is a red day, and it drags your overall score down.'],
+['Overall score and streak','Overall score is everything you did divided by everything you could have done since day one. The arrow shows the change since yesterday. The streak counts perfect days in a row.'],
+['Calendar','Every day with its percentage. Tap any day to open it and edit it.'],
+['Progress','Pick Day, Week or Month. The pie shows what you did and the dark slice is what you missed. Week view also compares this week against last week, task by task.'],
+['Settings ⚙','Add, rename, reorder or remove tasks, and set how many passes each task gets per week. Percentages, pies, graphs and badges adjust on their own. A new task starts counting from the day you add it. A removed task stops counting from that day and its past stays in your history.'],
+['All your devices','Once a Firebase link is set in the code, type the same secret code on every device and everything syncs. The note under the title shows the sync state. Without the link, everything is saved on this device only.']];
+ return `<div class="card"><h2>How this works</h2>${T.map(([a,b])=>`<div class="hp"><b>${a}</b><p>${b}</p></div>`).join('')}</div>`}
+function touch(){S.tm=Date.now();save();push('t',S.t);push('tm',S.tm)}
+function edT(id,f,v){const t=S.t.find(x=>x.id==id);if(!t)return;v=v.trim();if(f=='n'&&!v){render();return}t[f]=v||'🎯';touch();toast('Saved')}
+function qT(id,n){const t=S.t.find(x=>x.id==id);if(!t)return;t.q=Math.max(0,Math.min(7,t.q+n));touch();render()}
+function mvT(id,n){const i=S.t.findIndex(x=>x.id==id);let j=i+n;while(S.t[j]&&S.t[j].x)j+=n;if(!S.t[j])return;[S.t[i],S.t[j]]=[S.t[j],S.t[i]];touch();render()}
+function rmT(id){const t=S.t.find(x=>x.id==id);if(!t)return;if(!confirm('Remove "'+t.n+'"? It stops counting from today. Past days keep their history.'))return;t.x=key(today());touch();render();toast('Removed')}
+function addT(){const n=$('nn').value.trim();if(!n){toast('Give the task a name');return}const q=Math.max(0,Math.min(7,parseInt($('nq').value)||0)),e=$('ne').value.trim()||'🎯',c=S.t.reduce((m,t)=>Math.max(m,t.c||0),-1)+1;
+ S.t.push({id:'t'+Date.now().toString(36)+Math.floor(Math.random()*1000),n,e,q,c,a:key(today()),x:''});touch();render();toast('Added. Counts from today.')}
+function vS(){const L=S.t.filter(t=>!t.x);
+ return `<div class="card"><h2>Your tasks</h2><p class="sub">Rename, reorder, set weekly passes or remove. Everything updates by itself.</p>${L.length?L.map((t,i)=>`<div class="tw"><div class="r1"><input class="e1" value="${esc(t.e)}" maxlength="4" aria-label="Emoji" onchange="edT('${t.id}','e',this.value)"><input value="${esc(t.n)}" maxlength="40" aria-label="Task name" onchange="edT('${t.id}','n',this.value)"><button class="rm" aria-label="Remove task" onclick="rmT('${t.id}')">✕</button></div><div class="r2"><div>Passes per week <button onclick="qT('${t.id}',-1)" ${t.q<=0?'disabled':''}>−</button><b style="color:var(--ink);min-width:18px;text-align:center">${t.q}</b><button onclick="qT('${t.id}',1)" ${t.q>=7?'disabled':''}>+</button></div><div><button onclick="mvT('${t.id}',-1)" ${i==0?'disabled':''}>↑</button><button onclick="mvT('${t.id}',1)" ${i==L.length-1?'disabled':''}>↓</button></div></div></div>`).join(''):'<p class="msg">No tasks. Add one below.</p>'}</div>
+<div class="card ad"><h2>Add a task</h2><div class="row"><input class="e1" id="ne" placeholder="🎯" maxlength="4" aria-label="Emoji"><input id="nn" placeholder="Task name" maxlength="40" autocomplete="off"><input class="q1" id="nq" type="number" min="0" max="7" placeholder="Passes" aria-label="Passes per week"></div><button class="big" onclick="addT()">Add task</button></div>
+<div class="card"><h2>Danger zone</h2><div class="dz"><p class="hp" style="color:#c3cad6">Reset wipes every tick, badge and streak on every device. Your task list stays. To unlock the button, type RESET below.</p><input id="rs" placeholder="Type RESET" autocomplete="off" oninput="$('rb').disabled=this.value!='RESET'"><button class="big" id="rb" disabled onclick="doReset()" style="background:#a83240;color:#fff">Reset everything</button></div>${DB?'<button class="big alt" onclick="chCode()">Change secret code</button>':''}</div>`}
+function render(){if(DB&&!CODE){A.innerHTML='<div class="card cd"><h1>Hi '+NAME+'</h1><p>Enter your secret code. Use the same code on every device and your progress follows you.</p><input id="cc" placeholder="Secret code" autocomplete="off"><button class="big" onclick="setCode()">Open my Grind</button></div>';return}
+ const t=today(),o=ov(t),y=add(t,-1),tr=parse(S.s)<=y?o-ov(y):0,sk=stk()[0];
+ A.innerHTML=`<div class="top"><div><h1>${NAME}’s Grind</h1><p class="sub">No excuses. Tick it off. <span id="sy"></span></p></div><div class="hbtn"><button class="qm" aria-label="Settings" onclick="tab=5;render()">⚙</button><button class="qm" aria-label="Help" onclick="tab=4;render()">?</button></div></div>
+<div class="stats"><div class="chip"><b>${o}%</b><small>Overall score</small></div><div class="chip"><b style="color:${tr<0?'#ff6b76':'#3ddc97'}">${tr<0?'▼':tr>0?'▲':'•'} ${Math.abs(tr)}%</b><small>vs yesterday</small></div><div class="chip"><b>🔥 ${sk}</b><small>Perfect streak</small></div></div>
+<div class="tabs">${[[0,'Today'],[3,'Calendar'],[1,'Progress'],[2,'Awards']].map(([i,n])=>`<button class="${i==tab?'a':''}" onclick="tab=${i};render()">${n}</button>`).join('')}</div>${[vT,vP,vA,vC,vH,vS][tab]()}`;hit=null;dot()}
+render();pull();setInterval(pull,30000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)pull()});
+</script></body></html>
