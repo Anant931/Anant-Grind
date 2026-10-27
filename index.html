@@ -2,6 +2,9 @@
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0a0c10">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
 <title>Anant’s Grind</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;600;700&display=swap">
 <style>
@@ -214,5 +217,6 @@ function render(){if(DB&&!CODE){A.innerHTML='<div class="card cd"><h1>Hi '+NAME+
  A.innerHTML=`<div class="top"><div><h1>${NAME}’s Grind</h1><p class="sub">No excuses. Tick it off. <span id="sy"></span></p></div><div class="hbtn"><button class="qm" aria-label="Settings" onclick="tab=5;render()">⚙</button><button class="qm" aria-label="Help" onclick="tab=4;render()">?</button></div></div>
 <div class="stats"><div class="chip"><b>${o}%</b><small>Overall score</small></div><div class="chip"><b style="color:${tr<0?'#ff6b76':'#3ddc97'}">${tr<0?'▼':tr>0?'▲':'•'} ${Math.abs(tr)}%</b><small>vs yesterday</small></div><div class="chip"><b>🔥 ${sk}</b><small>Perfect streak</small></div></div>
 <div class="tabs">${[[0,'Today'],[3,'Calendar'],[1,'Progress'],[2,'Awards']].map(([i,n])=>`<button class="${i==tab?'a':''}" onclick="tab=${i};render()">${n}</button>`).join('')}</div>${[vT,vP,vA,vC,vH,vS][tab]()}`;hit=null;dot()}
+if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 render();pull();setInterval(pull,30000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)pull()});
 </script></body></html>
